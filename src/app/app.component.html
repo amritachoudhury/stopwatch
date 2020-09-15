@@ -1,9 +1,16 @@
-<h1>
-{{hour}} : {{minute}} : {{second}} 
-</h1>
-
-<button class="spacing" (click) = "start(millisecond)">
-    {{isStopDisabled ? "Start" : "Stop"}}
-</button>
-<!-- <button class="spacing" (click) = "pause()" [disabled]="isStopDisabled">Pause</button> -->
-<button class="spacing" (click) = "reset()" [disabled]="isResetDisabled">Reset</button>
+<div class="alignment" fxLayout="column" fxLayoutAlign="space-around center">
+  <div class="spacing text-color">Stopwatch</div>
+  <div class="text-size">
+    hour : minute : second
+  </div>
+  {{ hour }} : {{ minute }} : {{ second }}
+  <div>
+    <button class="spacing" (click)="start(millisecond)">
+      {{ isStopDisabled ? "Start" : "Stop" }}
+    </button>
+    
+    <button class="spacing" (click)="reset()" [disabled]="isResetDisabled">
+      Reset
+    </button>
+  </div>
+</div>

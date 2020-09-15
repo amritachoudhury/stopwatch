@@ -10,7 +10,6 @@ export class AppComponent implements OnInit {
   public second: number = 0;
   public hour: number = 0;
   public minute: number = 0;
-  public flag: boolean = false;
   public isResetDisabled: boolean = true;
   public isStopDisabled: boolean = true;
 
@@ -44,14 +43,12 @@ export class AppComponent implements OnInit {
       }, 10);
     }
   }
-
-  public pause(): void {
-    this.isStopDisabled = false;
-  }
-
+  
   public reset(): void {
     this.second = 0;
     this.minute = 0;
     this.hour = 0;
+    this.isStopDisabled = true;
+    this.isResetDisabled = true;
   }
 }
