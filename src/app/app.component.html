@@ -1,7 +1,9 @@
 <h1>
-{{hour}} : {{minute}} : {{second}}
+{{hour}} : {{minute}} : {{second}} 
 </h1>
 
-<button class="spacing" (click) = "start(second)" [disabled]="flag">Start</button>
-<button class="spacing" (click) = "pause()" [disabled]="!flag">Pause</button>
-<!-- <button class="spacing" (click) = "stop()" [disabled]="!flag">Stop</button> -->
+<button class="spacing" (click) = "start(millisecond)">
+    {{isStopDisabled ? "Start" : "Pause"}}
+</button>
+<!-- <button class="spacing" (click) = "pause()" [disabled]="isStopDisabled">Pause</button> -->
+<button class="spacing" (click) = "reset()" [disabled]="isResetDisabled">Reset</button>

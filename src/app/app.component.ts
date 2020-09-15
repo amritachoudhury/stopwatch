@@ -6,46 +6,52 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
+  public millisecond: number = 0;
   public second: number = 0;
   public hour: number = 0;
   public minute: number = 0;
   public flag: boolean = false;
+  public isResetDisabled: boolean = true;
+  public isStopDisabled: boolean = true;
 
   constructor() {}
 
   public ngOnInit(): void {}
 
-  public start(sec: number): void {
-    this.flag = true;
-    this.countSeconds(sec);
+  public start(ms: number): void {
+    this.isStopDisabled = !this.isStopDisabled;
+    this.isResetDisabled = false;
+    this.countSeconds(ms);
   }
 
-  public countSeconds(sec: number): void {
-    if (this.flag) {
+  public countSeconds(ms: number): void {
+    if (!this.isStopDisabled) {
       setTimeout(() => {
-        this.second = ++sec;
-        if (this.second === 60) {
-          this.second = 0;
-          this.minute++;
-          if (this.minute === 60) {
-            this.minute = 0;
-            this.hour++;
+        this.millisecond = ++ms;
+        if (this.millisecond === 100) {
+          this.millisecond = 0;
+          this.second++;
+          if (this.second === 60) {
+            this.second = 0;
+            this.minute++;
+            if (this.minute === 60) {
+              this.minute = 0;
+              this.hour++;
+            }
           }
         }
-        this.countSeconds(this.second);
-      }, 1000);
+        this.countSeconds(this.millisecond);
+      }, 10);
     }
   }
 
   public pause(): void {
-    this.flag = false;
+    this.isStopDisabled = false;
   }
-  
 
-  // public stop(): void {
-  //   this.flag = false;
-  //   this.second = 0;
-  //   this.minute = 0;
-  //   this.hour = 0;
-  // }
+  public reset(): void {
+    this.second = 0;
+    this.minute = 0;
+    this.hour = 0;
+  }
 }
