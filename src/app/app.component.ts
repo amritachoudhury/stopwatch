@@ -24,10 +24,10 @@ export class AppComponent implements OnInit {
     if (this.flag) {
       setTimeout(() => {
         this.second = ++sec;
-        if (this.second === 10) {
+        if (this.second === 60) {
           this.second = 0;
           this.minute++;
-          if (this.minute === 3) {
+          if (this.minute === 60) {
             this.minute = 0;
             this.hour++;
           }
